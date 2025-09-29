@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | FoodCornor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><span>Food</span>Cornor</a>
+      <nav class="nav" id="primary-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html" class="active">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="cart-link" href="cart.html" aria-label="Cart"><span class="cart-icon">🛒</span><span class="cart-count" id="cart-count">0</span></a>
+        <button class="hamburger" id="hamburger" aria-label="Open Menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container" style="padding-top:28px">
+      <h2>Checkout</h2>
+      <div class="checkout-grid">
+        <form id="checkout-form" class="checkout-form">
+          <div class="field"><label>Name</label><input required placeholder="Full name"/></div>
+          <div class="field"><label>Email</label><input type="email" required placeholder="email@example.com"/></div>
+          <div class="field"><label>Address</label><input required placeholder="Street, City, Country"/></div>
+          <div class="field two"><div><label>Card</label><input required placeholder="1234 5678 9012 3456"/></div><div><label>Expiry</label><input required placeholder="MM/YY"/></div></div>
+          <div class="field two"><div><label>CVV</label><input required placeholder="123"/></div><div><label>Zip</label><input required placeholder="10001"/></div></div>
+          <button class="btn primary" type="submit">Pay Now</button>
+        </form>
+        <div>
+          <h3>Order Summary</h3>
+          <div id="summary"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="logo" href="index.html"><span>Food</span>Cornor</a>
+        <p class="muted">Fresh organic produce for everyone.</p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4>Contact</h4>
+        <p class="muted">support@vegefoods.test</p>
+        <p class="muted">+1 (555) 000-0000</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="muted">© <span id="year"></span> Vegefoods. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const summary = document.getElementById('summary');
+    const items = window.VegeCart.getItems();
+    const subtotal = items.reduce((s,it)=>s+it.qty*it.price,0);
+    const shipping = subtotal>50?0:4.99;
+    const total = subtotal+shipping;
+    summary.innerHTML = `
+      <div class=\"cart-table\">
+        ${items.map(it=>`<div class=\"cart-row\"><div class=\"cart-col name\">${it.qty} × ${it.name}</div><div class=\"cart-col total\">$${(it.qty*it.price).toFixed(2)}</div></div>`).join('')}
+      </div>
+      <div style=\"text-align:right;margin-top:10px\">Subtotal: $${subtotal.toFixed(2)}<br/>Shipping: $${shipping.toFixed(2)}<br/><strong>Total: $${total.toFixed(2)}</strong></div>`;
+    document.getElementById('checkout-form').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      alert('Payment successful! Thank you for your order.');
+      if (window.VegeCart && window.VegeCart.clear) { window.VegeCart.clear(); }
+      else { localStorage.removeItem('vegefoods.cart.v1'); }
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
+

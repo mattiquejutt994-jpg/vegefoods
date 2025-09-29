@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop | FoodCornor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><span>Food</span>Cornor</a>
+      <nav class="nav" id="primary-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html" class="active">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="cart-link" href="cart.html" aria-label="Cart"><span class="cart-icon">🛒</span><span class="cart-count" id="cart-count">0</span></a>
+        <button class="hamburger" id="hamburger" aria-label="Open Menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container" style="padding-top:28px">
+      <div class="section-head">
+        <h2>Shop</h2>
+        <div class="filters" id="filters">
+          <button class="btn primary" data-filter="all">All</button>
+          <button class="btn" data-filter="fruits">Fruits</button>
+          <button class="btn" data-filter="vegetables">Vegetables</button>
+          <button class="btn" data-filter="juices">Juices</button>
+          <button class="btn" data-filter="dried">Dried</button>
+        </div>
+      </div>
+      <div class="grid-4 product-grid" id="shop-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="logo" href="index.html"><span>Food</span>Cornor</a>
+        <p class="muted">Fresh organic produce for everyone.</p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+     
+      <div>
+        <h4>Contact</h4>
+        <p class="muted">support@vegefoods.test</p>
+        <p class="muted">+1 (555) 000-0000</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="muted">© <span id="year"></span> Vegefoods. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const shopGrid = document.getElementById('shop-grid');
+    const data = [
+      {id:'apple', name:'Fresh Apples', price:4.99, category:'fruits', img:'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=700&q=60'},
+      {id:'banana', name:'Bananas', price:2.10, category:'fruits', img:'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=700&q=60'},
+      {id:'orange', name:'Navel Oranges', price:5.10, category:'fruits', img:'https://images.unsplash.com/photo-1547514701-42782101795e?w=700&q=60'},
+      {id:'mango', name:'Mangoes', price:6.50, category:'fruits', img:'https://images.unsplash.com/photo-1553279768-865429fa0078?w=700&q=60'},
+      {id:'strawberry', name:'Strawberries', price:7.20, category:'fruits', img:'assets/images/images.jpeg'},
+      {id:'grapes', name:'Grapes', price:4.40, category:'fruits', img:'assets/images/images (1).jpeg'},
+      {id:'carrot', name:'Organic Carrots', price:2.49, category:'vegetables', img:'assets/images/images (2).jpeg'},
+      {id:'spinach', name:'Baby Spinach', price:3.29, category:'vegetables', img:'assets/images/images (3).jpeg'},
+      {id:'tomato', name:'Tomatoes', price:2.99, category:'vegetables', img:'assets/images/images (4).jpeg'},
+      {id:'cucumber', name:'Cucumbers', price:1.80, category:'vegetables', img:'assets/images/images (5).jpeg'},
+      {id:'broccoli', name:'Broccoli', price:2.60, category:'vegetables', img:'assets/images/images (6).jpeg'},
+      {id:'potato', name:'Potatoes', price:1.50, category:'vegetables', img:'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=700&q=60'},
+      {id:'juice-apple', name:'Apple Juice', price:3.90, category:'juices', img:'assets/images/images (7).jpeg'},
+      {id:'juice-orange', name:'Orange Juice', price:4.20, category:'juices', img:'assets/images/images (8).jpeg'},
+      {id:'juice-carrot', name:'Carrot Juice', price:4.00, category:'juices', img:'assets/images/carrot.jpeg'},
+      {id:'juice-mix', name:'Mixed Fruit Juice', price:4.60, category:'juices', img:'assets/images/mix.jpg'},
+      {id:'dry-apricot', name:'Dried Apricots', price:6.60, category:'dried', img:'assets/images/apricots.jpg'},
+      {id:'dry-dates', name:'Dates', price:5.90, category:'dried', img:'assets/images/date.jpg'},
+      {id:'dry-fig', name:'Dried Figs', price:7.80, category:'dried', img:'assets/images/figs.jpg'},
+      {id:'dry-raisins', name:'Raisins', price:4.70, category:'dried', img:'assets/images/raisins.jpg'}
+    ];
+    function render(list){
+      shopGrid.innerHTML = list.map(p => `
+        <article class=\"product reveal\" data-id=\"${p.id}\" data-category=\"${p.category}\">\n          <div class=\"media\"><img src=\"${p.img}\" alt=\"${p.name}\"/></div>\n          <div class=\"pill\" style=\"margin:6px 0\">${p.category}</div>\n          <h3>${p.name}</h3>\n          <div class=\"price\">$${p.price.toFixed(2)}</div>\n          <div class=\"actions\">\n            <a class=\"btn\" href=\"product.html?id=${encodeURIComponent(p.id)}\">Details</a>\n            <button class=\"btn\" data-action=\"buy\">Buy Now</button>\n            <button class=\"btn primary\" data-action=\"add\">Add to Cart</button>\n          </div>\n        </article>
+      `).join('');
+      document.querySelectorAll('.reveal').forEach(el=>{ if (!el.classList.contains('visible')) el.classList.add('visible'); });
+    }
+    function setActive(filter){
+      const container = document.getElementById('filters');
+      container.querySelectorAll('button').forEach(b=>{
+        if (b.getAttribute('data-filter')===filter){ b.classList.add('primary'); }
+        else b.classList.remove('primary');
+      });
+    }
+    function applyFilter(filter){
+      const list = filter==='all' ? data : data.filter(x=>x.category===filter);
+      render(list);
+      setActive(filter);
+    }
+    const initial = (location.hash||'').replace('#','');
+    applyFilter(['fruits','vegetables','juices','dried'].includes(initial)? initial : 'all');
+    document.getElementById('filters').addEventListener('click', (e)=>{
+      const t = e.target; if(!(t instanceof HTMLElement)) return;
+      const f = t.getAttribute('data-filter'); if(!f) return;
+      applyFilter(f);
+    });
+    shopGrid.addEventListener('click', (e)=>{
+      const t = e.target; if(!(t instanceof HTMLElement)) return;
+      const card = t.closest('.product'); if(!card) return;
+      const id = card.getAttribute('data-id');
+      const p = data.find(x=>x.id===id); if(!p) return;
+      if (t.matches('[data-action="add"]')){ window.VegeCart.addItem({ id:p.id, name:p.name, price:p.price, qty:1 }); }
+      if (t.matches('[data-action="buy"]')){ window.VegeCart.addItem({ id:p.id, name:p.name, price:p.price, qty:1 }); window.location.href = 'checkout.html'; }
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Article | FoodCornor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><span>Food</span>Cornor</a>
+      <nav class="nav" id="primary-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="cart-link" href="cart.html" aria-label="Cart"><span class="cart-icon">🛒</span><span class="cart-count" id="cart-count">0</span></a>
+        <button class="hamburger" id="hamburger" aria-label="Open Menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container" style="padding-top:28px">
+      <a class="link" href="blog.html">← Back to blog</a>
+      <article id="article" class="post"></article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="logo" href="index.html"><span>Food</span>Cornor</a>
+        <p class="muted">Fresh organic produce for everyone.</p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4>Contact</h4>
+        <p class="muted">support@vegefoods.test</p>
+        <p class="muted">+1 (555) 000-0000</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="muted">© <span id="year"></span> Vegefoods. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const content = {
+      'eat-seasonal': {
+        title:'Why Eating Seasonal Matters',
+        body:'Seasonal produce is fresher, tastier, and more nutritious. It also supports local farmers and reduces environmental impact.'
+      },
+      'meal-prep': {
+        title:'Easy Veggie Meal Prep Ideas',
+        body:'Prep grains, roast vegetables, and make versatile sauces to mix and match healthy meals all week.'
+      },
+      'organic-benefits': {
+        title:'Benefits of Organic Produce',
+        body:'Organic farming avoids synthetic pesticides, promoting biodiversity and soil health.'
+      },
+      'fresh-storage': {
+        title:'How to Store Fruits and Vegetables Longer',
+        body:`Keep produce fresh by storing it the right way: 
+        - Keep apples, berries, grapes, and leafy greens in the fridge.
+        - Tomatoes, bananas, garlic, onions, and potatoes prefer room temperature.
+        - Separate ethylene producers (bananas, apples, tomatoes) from ethylene-sensitive items (leafy greens, herbs) to prevent premature ripening.
+        - Use breathable bags or containers and keep greens dry with a paper towel.
+        - Don’t wash berries and herbs until right before eating.
+        These small habits can add days—sometimes weeks—of freshness and reduce food waste.`
+      }
+    };
+    const id = new URLSearchParams(location.search).get('id') || 'eat-seasonal';
+    const post = content[id];
+    document.getElementById('article').innerHTML = `
+      <h1>${post.title}</h1>
+      <p class=\"muted\">By Vegefoods · ${new Date().toLocaleDateString()}</p>
+      <p>${post.body}</p>
+    `;
+  </script>
+</body>
+</html>
+

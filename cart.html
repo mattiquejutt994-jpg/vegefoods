@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart | FoodCornor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><span>Food</span>Cornor</a>
+      <nav class="nav" id="primary-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="cart-link" href="cart.html" aria-label="Cart"><span class="cart-icon">🛒</span><span class="cart-count" id="cart-count">0</span></a>
+        <button class="hamburger" id="hamburger" aria-label="Open Menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container" style="padding-top:28px">
+      <h2>Your Cart</h2>
+      <div id="cart-view"></div>
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:14px">
+        <a class="btn" href="shop.html">Continue Shopping</a>
+        <a class="btn primary" id="checkout" href="checkout.html">Checkout</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="logo" href="index.html"><span>Food</span>Cornor</a>
+        <p class="muted">Fresh organic produce for everyone.</p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4>Contact</h4>
+        <p class="muted">support@vegefoods.test</p>
+        <p class="muted">+1 (555) 000-0000</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="muted">© <span id="year"></span> Vegefoods. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const root = document.getElementById('cart-view');
+    function render(){
+      const items = window.VegeCart.getItems();
+      if (!items.length){ root.innerHTML = '<p class="muted">Your cart is empty.</p>'; return; }
+      const rows = items.map(it => `
+        <div class=\"cart-row\">
+          <div class=\"cart-col name\">${it.name}</div>
+          <div class=\"cart-col price\">$${it.price.toFixed(2)}</div>
+          <div class=\"cart-col qty\"><input type=\"number\" min=\"1\" value=\"${it.qty}\" data-id=\"${it.id}\"/></div>
+          <div class=\"cart-col total\">$${(it.qty*it.price).toFixed(2)}</div>
+          <div class=\"cart-col action\"><button data-remove=\"${it.id}\" class=\"btn\">Remove</button></div>
+        </div>`).join('');
+      const subtotal = items.reduce((s,it)=>s+it.qty*it.price,0);
+      root.innerHTML = `
+        <div class=\"cart-table\">
+          <div class=\"cart-header\">
+            <div>Product</div><div>Price</div><div>Qty</div><div>Total</div><div></div>
+          </div>
+          ${rows}
+        </div>
+        <div style=\"text-align:right;margin-top:10px\"><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</div>`;
+    }
+    root.addEventListener('input', (e)=>{
+      const t = e.target; if(!(t instanceof HTMLInputElement)) return;
+      const id = t.getAttribute('data-id'); if(!id) return;
+      window.VegeCart.setQty(id, parseInt(t.value||'1',10));
+      render();
+    });
+    root.addEventListener('click', (e)=>{
+      const t = e.target; if(!(t instanceof HTMLElement)) return;
+      const id = t.getAttribute('data-remove'); if(!id) return;
+      window.VegeCart.removeItem(id);
+      render();
+    });
+    render();
+  </script>
+</body>
+</html>
+

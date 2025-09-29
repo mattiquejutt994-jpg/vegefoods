@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | FoodCornor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><span>Food</span>Cornor</a>
+      <nav class="nav" id="primary-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="cart-link" href="cart.html" aria-label="Cart"><span class="cart-icon">🛒</span><span class="cart-count" id="cart-count">0</span></a>
+        <button class="hamburger" id="hamburger" aria-label="Open Menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container" style="padding-top:36px">
+      <h1>Fresh Ideas for Eating Better</h1>
+      <p>Welcome to the Vegefoods blog — your home for practical tips, simple recipes, and smart ways to shop organic on any budget. We focus on seasonal produce, no-fuss cooking, and reducing food waste so you get more flavor and value from every basket.</p>
+      <p>Whether you’re planning weekly meals or just want to keep fruits and vegetables fresher for longer, we share easy, realistic advice that fits busy schedules. No complicated techniques — just good food made simpler.</p>
+      <p class="muted">Here’s what you’ll regularly find:</p>
+      <ul>
+        <li>Quick storage guides to make produce last</li>
+        <li>15-minute meal ideas using pantry staples</li>
+        <li>Seasonal picks and how to use them</li>
+        <li>Healthy snacks, smoothies, and lunch boxes</li>
+      </ul>
+    </section>
+    
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="logo" href="index.html"><span>Food</span>Cornor</a>
+        <p class="muted">Fresh organic produce for everyone.</p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+     
+      <div>
+        <h4>Contact</h4>
+        <p class="muted">support@vegefoods.test</p>
+        <p class="muted">+1 (555) 000-0000</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="muted">© <span id="year"></span> Vegefoods. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const posts = [
+      {id:'eat-seasonal', title:'Why Eating Seasonal Matters', img:'https://images.unsplash.com/photo-1471194402529-8e0f5a675de6?w=800&q=60'},
+      {id:'meal-prep', title:'Easy Veggie Meal Prep Ideas', img:'https://images.unsplash.com/photo-1505575972945-2804b56ba02f?w=800&q=60'},
+      {id:'organic-benefits', title:'Benefits of Organic Produce', img:'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=800&q=60'},
+      {id:'fresh-storage', title:'How to Store Fruits and Vegetables Longer', img:'https://images.unsplash.com/photo-1506806732259-39c2d0268443?w=800&q=60'}
+    ];
+    const root = document.getElementById('posts');
+    root.innerHTML = posts.map(p=>`
+      <a class=\"card reveal\" href=\"post.html?id=${p.id}\">
+        <img class=\"card-art\" src=\"${p.img}\" alt=\"${p.title}\"/>
+        <h3>${p.title}</h3>
+      </a>
+    `).join('');
+  </script>
+</body>
+</html>
+

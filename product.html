@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product | FoodCornor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><span>Food</span>Cornor</a>
+      <nav class="nav" id="primary-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html" class="active">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="cart-link" href="cart.html" aria-label="Cart"><span class="cart-icon">🛒</span><span class="cart-count" id="cart-count">0</span></a>
+        <button class="hamburger" id="hamburger" aria-label="Open Menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container" style="padding-top:28px">
+      <a class="link" href="shop.html">← Back to shop</a>
+      <div class="product-detail" id="product"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="logo" href="index.html"><span>Food</span>Cornor</a>
+        <p class="muted">Fresh organic produce for everyone.</p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+     
+      <div>
+        <h4>Contact</h4>
+        <p class="muted">support@vegefoods.test</p>
+        <p class="muted">+1 (555) 000-0000</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p class="muted">© <span id="year"></span> Vegefoods. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const lookup = {
+      'apple': {name:'Fresh Apples', price:4.99, img:'assets/images/fresh-mix-fruit.jpg', desc:'Crisp, juicy apples from local orchards.'},
+      'banana': {name:'Bananas', price:2.10, img:'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=1000&q=60', desc:'Naturally sweet and full of potassium.'},
+      'orange': {name:'Navel Oranges', price:5.10, img:'https://images.unsplash.com/photo-1547514701-42782101795e?w=1000&q=60', desc:'Bright citrus flavor loaded with Vitamin C.'},
+      'mango': {name:'Mangoes', price:6.50, img:'https://images.unsplash.com/photo-1553279768-865429fa0078?w=1000&q=60', desc:'Sweet, fragrant, and perfectly ripe.'},
+      'strawberry': {name:'Strawberries', price:7.20, img:'assets/images/images.jpeg', desc:'Bright red berries, perfect for desserts.'},
+      'grapes': {name:'Grapes', price:4.40, img:'assets/images/images (1).jpeg', desc:'Seedless, sweet, and crunchy.'},
+      'carrot': {name:'Organic Carrots', price:2.49, img:'assets/images/carrot.jpeg', desc:'Crunchy carrots rich in beta-carotene.'},
+      'spinach': {name:'Baby Spinach', price:3.29, img:'assets/images/images (3).jpeg', desc:'Tender spinach leaves perfect for salads.'},
+      'tomato': {name:'Tomatoes', price:2.99, img:'assets/images/images (4).jpeg', desc:'Vine-ripened tomatoes bursting with flavor.'},
+      'cucumber': {name:'Cucumbers', price:1.80, img:'assets/images/images (5).jpeg', desc:'Refreshing crunch for salads and snacking.'},
+      'broccoli': {name:'Broccoli', price:2.60, img:'assets/images/images (6).jpeg', desc:'Nutrient-dense florets, great steamed or roasted.'},
+      'potato': {name:'Potatoes', price:1.50, img:'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=1000&q=60', desc:'All-purpose potatoes for every dish.'},
+      'juice-apple': {name:'Apple Juice', price:3.90, img:'assets/images/images (7).jpeg', desc:'Cold-pressed apple juice, no sugar added.'},
+      'juice-orange': {name:'Orange Juice', price:4.20, img:'assets/images/images (8).jpeg', desc:'Fresh-squeezed taste, rich in Vitamin C.'},
+      'juice-carrot': {name:'Carrot Juice', price:4.00, img:'assets/images/carrot.jpeg', desc:'Naturally sweet, packed with beta-carotene.'},
+      'juice-mix': {name:'Mixed Fruit Juice', price:4.60, img:'assets/images/mix.jpg', desc:'A vibrant blend of seasonal fruits.'},
+      'dry-apricot': {name:'Dried Apricots', price:6.60, img:'assets/images/apricots.jpg', desc:'Naturally dried, soft and tangy.'},
+      'dry-dates': {name:'Dates', price:5.90, img:'assets/images/date.jpg', desc:'Caramel-sweet energy bites.'},
+      'dry-fig': {name:'Dried Figs', price:7.80, img:'assets/images/figs.jpg', desc:'Chewy, honey-sweet figs.'},
+      'dry-raisins': {name:'Raisins', price:4.70, img:'assets/images/raisins.jpg', desc:'Sun-dried and naturally sweet.'}
+    };
+    const params = new URLSearchParams(location.search);
+    const id = params.get('id');
+    const p = lookup[id] || lookup['apple'];
+    const root = document.getElementById('product');
+    root.innerHTML = `
+      <div class="detail-grid">
+        <img class="detail-media" src="${p.img}" alt="${p.name}"/>
+        <div>
+          <h1>${p.name}</h1>
+          <div class="price">$${p.price.toFixed(2)}</div>
+          <p class="muted">${p.desc}</p>
+          <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
+            <input id="qty" type="number" min="1" value="1" style="width:80px;padding:8px;border:1px solid #e5e7eb;border-radius:10px"/>
+            <button class="btn primary" id="add">Add to Cart</button>
+          </div>
+        </div>
+      </div>`;
+    document.getElementById('add').addEventListener('click', ()=>{
+      const qty = Math.max(1, parseInt(document.getElementById('qty').value||'1',10));
+      window.VegeCart.addItem({ id, name:p.name, price:p.price, qty });
+    });
+  </script>
+</body>
+</html>
+

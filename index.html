@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FoodCornor | Fresh Organic Produce</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="icon" href="assets/images/favicon.png" />
+    <meta name="description" content="Vegefoods - Fresh organic fruits and vegetables delivered to your door." />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="index.html"><span>Food</span>Cornor</a>
+            <nav class="nav" id="primary-nav">
+                <a href="index.html" class="active">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <a class="cart-link" href="cart.html" aria-label="Cart">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="cart-count">0</span>
+                </a>
+                <button class="hamburger" id="hamburger" aria-label="Open Menu" aria-expanded="false">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-inner">
+                <div class="hero-copy">
+                    <h1>Fresh, Organic, and Delivered</h1>
+                    <p>Hand-picked fruits and vegetables sourced from local farms. Eat clean, live green.</p>
+                    <div class="hero-actions">
+                        <a href="shop.html" class="btn primary">Shop Now</a>
+                        <a href="#features" class="btn ghost">Why Vegefoods?</a>
+                    </div>
+                </div>
+                <div class="hero-art reveal" aria-hidden="true">
+                    <img src="assets/images/fresh-mix-fruit.jpg" alt="Organic vegetables"/>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="container grid-3">
+                <div class="feature">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Free Delivery</h3>
+                    <p>On orders over $50 across select areas.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🌿</div>
+                    <h3>100% Organic</h3>
+                    <p>No pesticides. No chemicals. Just real food.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Same-Day Dispatch</h3>
+                    <p>Order before 12pm for same-day dispatch.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="category">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Shop by Category</h2>
+                    <a href="shop.html" class="link">View all</a>
+                </div>
+                <div class="grid-4 cards">
+                    <a class="card" href="shop.html#fruits">
+                        <div class="card-art art-fruit" style="background-image:linear-gradient(135deg,rgba(0,0,0,.08),rgba(0,0,0,.02)),url('assets/images/fresh-mix-fruit.jpg')"></div>
+                        <h3>Fruits</h3>
+                    </a>
+                    <a class="card" href="shop.html#vegetables">
+                        <div class="card-art art-veggies" style="background-image:linear-gradient(135deg,rgba(0,0,0,.08),rgba(0,0,0,.02)),url('https://images.unsplash.com/photo-1447175008436-054170c2e979?w=800&q=60&auto=format&fit=crop')"></div>
+                        <h3>Vegetables</h3>
+                    </a>
+                    <a class="card" href="shop.html#juices">
+                        <div class="card-art art-juice" style="background-image:linear-gradient(135deg,rgba(0,0,0,.08),rgba(0,0,0,.02)),url('assets/images/istockphoto-1127182311-612x612.jpg')"></div>
+                        <h3>Juices</h3>
+                    </a>
+                    <a class="card" href="shop.html#dried">
+                        <div class="card-art art-dried" style="background-image:linear-gradient(135deg,rgba(0,0,0,.08),rgba(0,0,0,.02)),url('assets/images/nuts-dried-fruits-history-online.jpeg')"></div>
+                        <h3>Dried</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="products">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Featured Products</h2>
+                </div>
+                <div class="grid-4 product-grid" id="featured-products">
+                    <!-- Products injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container cta-inner">
+                <h2>Subscribe and get 20% off your first order</h2>
+                <form class="subscribe" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                    <input type="email" placeholder="Enter your email" required />
+                    <button class="btn primary" type="submit">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <a class="logo" href="index.html"><span>Food</span>Cornor</a>
+                <p class="muted">Fresh organic produce for everyone.</p>
+            </div>
+            <div>
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+           
+            <div>
+                <h4>Contact</h4>
+                <p class="muted">support@vegefoods.test</p>
+                <p class="muted">+1 (555) 000-0000</p>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p class="muted">© <span id="year"></span> Vegefoods. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <!-- Inspired by the Vegefoods template by Colorlib: https://preview.colorlib.com/#vegefoods -->
+    <!-- Reference: https://preview.colorlib.com/?_gl=1*1rvqdmn*_ga*MzQ3OTY1MzY1LjE3NTgxNzc4Nzc.*_ga_SEKJ4E9T4H*czE3NTgxODAxODckbzIkZzEkdDE3NTgxODA2NjEkajQ0JGwwJGgw#vegefoods -->
+  </body>
+</html>
+
